@@ -30,15 +30,15 @@ class Countly
 	public:	  
        static std::mutex mutex;
 	   static Countly* GetInstance();
-	   void init(string serverURL, string appKey);
-	   void init(string serverURL, string appKey, string region, string server, string channel);
+	   void Countly::init(string serverURL, string appKey);
+	   void Countly::init(string serverURL, string appKey, string region, string server, string channel);
 	   void post();
 	   void Countly::postThread();
 	   void recordEvent(string key);
 	   void recordEvent(string key, int count);
-	   void recordEvent(String key, int count, double sum);
-	   void recordEvent(string key, Map<string, string> segmentation, int count);
-	   void recordEvent(string key, Map<string, string> segmentation, int count, double sum);	
+	   void recordEvent(string key, int count, double sum);
+	   void recordEvent(string key, std::map<std::string, std::string> segmentation, int count);
+	   void recordEvent(string key, std::map<std::string, std::string> segmentation, int count, double sum);	
 	   void onTimer();
 };
 
@@ -112,8 +112,8 @@ class EventQueue
 		void EventQueue::recordEvent(string key);
 		void EventQueue::recordEvent(string key, int count);
 		void EventQueue::recordEvent(string key, int count, double sum);
-		void EventQueue::recordEvent(string key, Map<string, string> segmentation, int count);
-		void EventQueue::recordEvent(string key, Map<string, string> segmentation, int count, double sum);
+		void EventQueue::recordEvent(string key, std::map<std::string, std::string> segmentation, int count);
+		void EventQueue::recordEvent(string key, std::map<std::string, std::string> segmentation, int count, double sum);
 		unsigned char ToHex(unsigned char x) ;
 		unsigned char EventQueue::FromHex(unsigned char x);
 		std::string EventQueue::UrlEncode(const std::string& str);
@@ -123,7 +123,7 @@ class UserEvent
 {
 	public:
 		std::string key;
-		Map<std::string,std::string> segmentation;
+		std::map<std::string,std::string> segmentation;
 		int count;
         double sum;
 		int timestamp;
@@ -147,7 +147,7 @@ class CountlyStore
 		void CountlyStore::addConnection(std::string str);
 		void CountlyStore::removeConnection(std::string str);
 		void CountlyStore::addEvent(UserEvent event);
-		void CountlyStore::addEvent(std::string key, Map<std::string, std::string> segmentation, int count, double sum);
+		void CountlyStore::addEvent(std::string key, std::map<std::string, std::string> segmentation, int count, double sum);
 		void CountlyStore::removeEvent(UserEvent event);
 		void CountlyStore::removeEvents(list<UserEvent> eventsToRemove);
 };
