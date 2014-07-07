@@ -3,7 +3,7 @@ countly-sdk-cocos2d-x
 1、	交互协议
 使用HTTP协议将用户行为数据上报COUNTLY服务器。  
 
-2、主要流程
+2、主要流程  
 （1）初始化时可设置服务器URL、appKey、分区、服务器ID、渠道，之后的所有数据上报使用这个配置，推荐使用单例模式；  
 （2）初始化时启用一个定时器来维护用户的session状态，即用户session状态开始、定时（比如60秒）状态刷新、session结束（用户离线），发送数据分别形如：  
 app_key=xxxx&device_id=xxxx&region=xxxx&server=xxxx&channel=xxxx&timestamp=xxxx&begin_session=1&metrics=xxxx  
